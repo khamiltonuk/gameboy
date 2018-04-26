@@ -1,35 +1,51 @@
 /* globals __DEV__ */
-import Phaser from 'phaser'
-import Mushroom from '../sprites/Mushroom'
+import Phaser from "phaser";
+import { centerGameObjects } from "../utils";
+var ball, paddle;
 
 export default class extends Phaser.State {
-  init() { }
-  preload() { }
+  init() {}
+  preload() {
+    game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    game.scale.pageAlignHorizontally = true;
+    game.scale.pageAlignVertically = true;
+    // game.stage.backgroundColor = "#eee";
+    game.load.image("ball", "assets/images/mushroom2.png");
+    game.load.image("paddle", "assets/images/paddle.png");
+  }
 
   create() {
-    const bannerText = 'Phaser + ES6 + Webpack'
-    let banner = this.add.text(this.world.centerX, this.game.height - 80, bannerText, {
-      font: '40px Bangers',
-      fill: '#77BFA3',
-      smoothed: false
-    })
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    ball = game.add.sprite(
+      game.world.width * 0.5,
+      game.world.height - 25,
+      "ball"
+    );
+    game.physics.enable(ball, Phaser.Physics.ARCADE);
+    ball.body.velocity.set(150, 150);
+    ball.body.collideWorldBounds = true;
+    ball.body.bounce.set(1);
+    ball.scale.set(0.5, 0.5);
 
-    banner.padding.set(10, 16)
-    banner.anchor.setTo(0.5)
+    paddle = game.add.sprite(
+      game.world.width * 0.5,
+      game.world.height - 5,
+      "paddle"
+    );
+    centerGameObjects([paddle]);
+    game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
-    this.mushroom = new Mushroom({
-      game: this.game,
-      x: this.world.centerX,
-      y: this.world.centerY,
-      asset: 'mushroom'
-    })
+    paddle.body.immovable = true;
+  }
 
-    this.game.add.existing(this.mushroom)
+  update() {
+    game.physics.arcade.collide(ball, paddle);
+    paddle.x = game.input.x || game.world.width * 0.5;
   }
 
   render() {
     if (__DEV__) {
-      this.game.debug.spriteInfo(this.mushroom, 32, 32)
+      //this.game.debug.spriteInfo(this.mushroom, 32, 32)
     }
   }
 }
