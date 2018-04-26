@@ -7,6 +7,9 @@ var ball,
   newBrick,
   brickInfo,
   scoreText,
+  lives = 3,
+  livesText,
+  lifeLostText,
   score = 0;
 
 export default class extends Phaser.State {
@@ -50,6 +53,7 @@ export default class extends Phaser.State {
   }
 
   create() {
+    var textStyle = { font: "18px Arial", fill: "#0095DD" };
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.checkCollision.down = false;
     scoreText = game.add.text(5, 5, "Points: 0", {
@@ -57,7 +61,7 @@ export default class extends Phaser.State {
       fill: "#0095DD"
     });
 
-    
+    // Ball
     ball = game.add.sprite(
       game.world.width * 0.5,
       game.world.height - 25,
@@ -67,7 +71,9 @@ export default class extends Phaser.State {
     ball.body.velocity.set(150, -150);
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
+    ball.events.onOutOfBounds.add(this.ballLeaveScreen, this);
 
+    // Paddle
     paddle = game.add.sprite(
       game.world.width * 0.5,
       game.world.height - 5,
@@ -78,16 +84,50 @@ export default class extends Phaser.State {
     centerGameObjects([paddle]);
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
 
-    ball.events.onOutOfBounds.add(function() {
-      alert("Game over!");
-      location.reload();
-    }, this);
+    // Lives
+    livesText = game.add.text(
+      game.world.width - 5,
+      5,
+      "Lives: " + lives,
+      textStyle
+    );
+    livesText.anchor.set(1, 0);
+    lifeLostText = game.add.text(
+      game.world.width * 0.5,
+      game.world.height * 0.5,
+      "Life lost, click to continue",
+      textStyle
+    );
+    lifeLostText.anchor.set(0.5);
+    lifeLostText.visible = false;
 
     this.initBricks();
     paddle.body.immovable = true;
   }
+  ballLeaveScreen() {
+    console.log("working");
+    lives--;
+    if (lives) {
+      livesText.setText("Lives: " + lives);
+      lifeLostText.visible = true;
+      ball.reset(game.world.width * 0.5, game.world.height - 25);
+      paddle.reset(game.world.width * 0.5, game.world.height - 5);
+      game.input.onDown.addOnce(function() {
+        lifeLostText.visible = false;
+        ball.body.velocity.set(150, -150);
+      }, this);
+    } else {
+      alert("You lost, game over!");
+      location.reload();
+    }
+  }
   ballHitBrick(ball, brick) {
-    brick.kill();
+    var killTween = game.add.tween(brick.scale);
+    killTween.to({ x: 0, y: 0 }, 200, Phaser.Easing.Linear.None);
+    killTween.onComplete.addOnce(function() {
+      brick.kill();
+    }, this);
+    killTween.start();
     score += 10;
     scoreText.setText("Points: " + score);
 
