@@ -15,157 +15,157 @@ $grayshade: rgba(191, 190, 185, 0.9);
   height: 454px;
   border-radius: 11px;
   border-bottom-right-radius: 3em;
-  .beforeandafter {
-    position: absolute;
-    content: " ";
-  }
-  .line {
-    width: 100%;
-    height: 5px;
-    background: $grayshade;
-    top: 20px;
-  }
-  .line:before {
-    left: 20px;
-    top: -20px;
-  }
-  .line:after {
-    right: 20px;
-    top: -20px;
-  }
-  .line:before,
-  .line:after {
-    @extend .beforeandafter;
-    background: $grayshade;
-    height: 25px;
-    width: 5px;
-  }
-  .glass {
-    width: 232px;
-    height: 177px;
-    border-radius: 7px;
-    position: relative;
-    top: 37px;
-    left: 21px;
-    border-bottom-right-radius: 3em;
-    background: #6a6872;
-    #light {
-      border-radius: 9px;
-      width: 9px;
-      height: 9px;
-      top: 63px;
-      left: 14px;
-      background: #000;
-    }
-    #light.on {
-      background: #6fa147;
-      box-shadow: 0 0 3px #6fa147;
-    }
-    .screen {
-      width: 142px;
-      height: 130px;
-      background: #4a6e39;
-      border: 2px solid #3d3842;
-      top: 21px;
-      left: 44px;
-      overflow: hidden;
-      cursor: none;
-    }
-  }
-  .controls {
-    top: 0;
-    width: 100%;
-    left: 0;
-    .fourway {
-      width: 22px;
-      height: 66px;
-      background: rgba(71, 71, 71, 0.8);
-      left: 44px;
-      top: 276px;
-    }
-    .fourway:after {
-      width: 22px;
-      height: 66px;
-      @extend .beforeandafter;
-      background: rgba(71, 71, 71, 0.8);
-      transform: rotate(90deg);
-    }
-    .fourway:before {
-      width: 16px;
-      height: 16px;
-      border-radius: 16px;
-      top: 50%;
-      left: 50%;
-      margin: -8px 0 0 -8px;
-      @extend .beforeandafter;
-      background: rgba(71, 71, 71, 0.8);
-    }
-    .start,
-    .select {
-      width: 33px;
-      height: 10px;
-      border-radius: 5px;
-      background: rgba(71, 71, 71, 0.8);
-      transform: rotate(-27deg);
-    }
-    .select {
-      top: 372px;
-      left: 81px;
-    }
-    .start {
-      top: 372px;
-      left: 127px;
-    }
-  }
-  .weird {
-    bottom: -4px;
-    left: 123px;
-    transform: rotate(90deg);
-    color: $grayshade;
-  }
-  .weird:after {
+}
+.beforeandafter {
+  position: absolute;
+  content: " ";
+}
+.line {
+  width: 100%;
+  height: 5px;
+  background: $grayshade;
+  top: 20px;
+}
+.line:before {
+  left: 20px;
+  top: -20px;
+}
+.line:after {
+  right: 20px;
+  top: -20px;
+}
+.line:before,
+.line:after {
+  @extend .beforeandafter;
+  background: $grayshade;
+  height: 25px;
+  width: 5px;
+}
+.glass {
+  width: 232px;
+  height: 177px;
+  border-radius: 7px;
+  position: relative;
+  top: 37px;
+  left: 21px;
+  border-bottom-right-radius: 3em;
+  background: #6a6872;
+  #light {
+    border-radius: 9px;
     width: 9px;
-    height: 44px;
+    height: 9px;
+    top: 63px;
+    left: 14px;
+    background: #000;
+  }
+  #light.on {
+    background: #6fa147;
+    box-shadow: 0 0 3px #6fa147;
+  }
+  .screen {
+    width: 142px;
+    height: 130px;
+    background: #4a6e39;
+    border: 2px solid #3d3842;
+    top: 21px;
+    left: 44px;
+    overflow: hidden;
+    cursor: none;
+  }
+}
+.controls {
+  top: 0;
+  width: 100%;
+  left: 0;
+  .fourway {
+    width: 22px;
+    height: 66px;
+    background: rgba(71, 71, 71, 0.8);
+    left: 44px;
+    top: 276px;
+  }
+  .fourway:after {
+    width: 22px;
+    height: 66px;
+    @extend .beforeandafter;
+    background: rgba(71, 71, 71, 0.8);
+    transform: rotate(90deg);
+  }
+  .fourway:before {
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -8px;
+    @extend .beforeandafter;
+    background: rgba(71, 71, 71, 0.8);
+  }
+  .start,
+  .select {
+    width: 33px;
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(71, 71, 71, 0.8);
+    transform: rotate(-27deg);
+  }
+  .select {
+    top: 372px;
+    left: 81px;
+  }
+  .start {
+    top: 372px;
+    left: 127px;
+  }
+}
+.weird {
+  bottom: -4px;
+  left: 123px;
+  transform: rotate(90deg);
+  color: $grayshade;
+}
+.weird:after {
+  width: 9px;
+  height: 44px;
+  border-radius: 5px;
+  @extend .beforeandafter;
+  top: -2px;
+  background: $grayshade;
+  left: -1px;
+}
+.speaker {
+  top: 359px;
+  left: 186px;
+  transform: rotate(61deg);
+  width: 46px;
+  .hole {
+    height: 6px;
+    position: static;
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+    background: $grayshade;
+  }
+  .hole:after {
+    width: 26px;
+    height: 6px;
     border-radius: 5px;
     @extend .beforeandafter;
-    top: -2px;
-    background: $grayshade;
-    left: -1px;
+    background: rgba(71, 71, 71, 0.8);
   }
-  .speaker {
-    top: 359px;
-    left: 186px;
-    transform: rotate(61deg);
-    width: 46px;
-    .hole {
-      height: 6px;
-      position: static;
-      border-radius: 5px;
-      margin: 0 0 10px 0;
-      background: $grayshade;
-    }
-    .hole:after {
-      width: 26px;
-      height: 6px;
-      border-radius: 5px;
-      @extend .beforeandafter;
-      background: rgba(71, 71, 71, 0.8);
-    }
-  }
-  .a,
-  .b {
-    background: #921650;
-    border: 5px solid #b2346b;
-    border-radius: 22px;
-    height: 22px;
-    width: 22px;
-  }
-  .a {
-    right: 65px;
-    top: 299px;
-  }
-  .b {
-    right: 18px;
-    top: 279px;
-  }
+}
+.a,
+.b {
+  background: #921650;
+  border: 5px solid #b2346b;
+  border-radius: 22px;
+  height: 22px;
+  width: 22px;
+}
+.a {
+  right: 65px;
+  top: 299px;
+}
+.b {
+  right: 18px;
+  top: 279px;
 }
