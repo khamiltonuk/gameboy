@@ -22,7 +22,7 @@ export default class extends Phaser.State {
       "ball"
     );
     game.physics.enable(ball, Phaser.Physics.ARCADE);
-    ball.body.velocity.set(150, 150);
+    ball.body.velocity.set(150, -150);
     ball.body.collideWorldBounds = true;
     ball.body.bounce.set(1);
     ball.scale.set(0.5, 0.5);
@@ -34,6 +34,11 @@ export default class extends Phaser.State {
     );
     centerGameObjects([paddle]);
     game.physics.enable(paddle, Phaser.Physics.ARCADE);
+    game.physics.arcade.checkCollision.down = false;
+    ball.events.onOutOfBounds.add(function() {
+      alert("Game over!");
+      location.reload();
+    }, this);
 
     paddle.body.immovable = true;
   }
